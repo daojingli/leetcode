@@ -18,22 +18,23 @@
  */
 
 public class ZigZagConversion {
-	public String convert(String s, int numRows) {
-		if (numRows == 1) return s;
+    public String convert(String s, int numRows) {
+        if (numRows == 1) return s;
 
-		char[] a  = s.toCharArray();
-		int N = a.length;
-		char[] b = new char[N];
-		int p = 0;
+        char[] a  = s.toCharArray();
+        int N = a.length;
+        char[] b = new char[N];
 
-		for (int i = 0; i < numRows; i++) {
-			for (int j = i; j < N; j += 2*(numRows-1)) {
-				b[p++] = a[j];
-				if (i > 0 && i < numRows -1 && j + 2*(numRows-1-i) < N) 
-					b[p++] = a[j + 2*(numRows-1-i)];
-			}
-		}
+        int p = 0;
+        int jump = 2* numRows - 2;
+        for (int i = 0; i < numRows; i++) {
+            for (int j = i; j < N; j += jump) {
+                b[p++] = a[j];
+                if (i > 0 && i < numRows -1 && j + jump - 2*i < N) 
+                    b[p++] = a[j + jump - 2*i];
+            }
+        }
 
-		return new String(b);
-	}
+        return new String(b);
+    }
 }
