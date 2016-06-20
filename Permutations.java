@@ -26,16 +26,16 @@ public class Permutations {
 	private void backtrack(List<List<Integer>> res, ArrayList<Integer> list, int[] set, int[] nums) {
 		if (list.size() == nums.length) {
 		    res.add(new ArrayList(list));
-		} else {
-			for (int i = 0; i < nums.length; i++) {
-			    if (set[i] == 0) {
-			        set[i]++;
-			        list.add(nums[i]);
-			    	backtrack(res, list, set, nums);
-			    	list.remove(list.size() -1);
-			    	set[i]--;
-			    } 
-			}
+		    return;
+		} 
+		for (int i = 0; i < nums.length; i++) {
+			if (set[i] == 0) {
+			    set[i]++;
+			    list.add(nums[i]);
+			    backtrack(res, list, set, nums);
+			    list.remove(list.size() -1);
+			    set[i]--;
+			} 
 		}
 	}
 }
